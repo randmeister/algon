@@ -1,6 +1,6 @@
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
-
 # algon
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
 
 Algorand node running stable channel helm chart compatible with testnet and mainnet.
 
