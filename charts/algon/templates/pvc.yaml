@@ -1,7 +1,8 @@
+{{- $fullName := include "algon.fullname" . -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: taskname: {{ $fullName }}-data-pv-claim
+  name: taskname: {{ $fullName }}-pv-claim
 spec:
   accessModes:
     - ReadWriteOnce

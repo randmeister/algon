@@ -1,7 +1,8 @@
+{{- $fullName := include "algon.fullname" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "algon.fullname" . }}
+  name: {{ $fullName }}
   labels:
     {{- include "algon.labels" . | nindent 4 }}
 spec:
