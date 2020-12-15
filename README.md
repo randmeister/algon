@@ -1,6 +1,6 @@
 # algon
  
-Algorand node running stable channel helm chart compatible the testnet and mainnet.
+Algorand node running stable channel helm chart compatible with testnet and mainnet.
 
 ## Features
 
@@ -32,7 +32,7 @@ helm upgrade --install algon algon/algon
 
 ### Helmfile
 
-Helmfile is a tool to manage helm charts declaratively https://github.com/roboll/helmfile. Below an example running algon with grafana and loki.
+Helmfile is a tool to manage helm charts declaratively https://github.com/roboll/helmfile. Check out [example directory](./example) for full documentation.
 
 ```yaml
 helmDefaults:
