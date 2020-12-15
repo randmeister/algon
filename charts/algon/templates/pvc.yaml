@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: task-pv-claim
+  name: taskname: {{ $fullName }}-data-pv-claim
 spec:
   accessModes:
     - ReadWriteOnce

@@ -1,6 +1,6 @@
 # Algon
  
-Stable channel Alogrand Node helm chart.
+Stable channel Algorand node helm chart.
 
 ## Prerequisites
 

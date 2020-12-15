@@ -1,6 +1,6 @@
 apiVersion: v2
 name: algon
-description: A Helm chart for Kubernetes
+description: Stable channel Algorand node helm chart
 
 # A chart can be either an 'application' or a 'library' chart.
 #

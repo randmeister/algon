@@ -27,12 +27,12 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: algon-volume
+        - name: data-volume
           persistentVolumeClaim:
-            claimName: task-pv-claim
+            claimName: name: {{ $fullName }}-data-pv-claim
         - name: config-volume
           configMap:
-            name: algod-configmap
+            name: name: {{ $fullName }}-configmap
       serviceAccountName: {{ include "algon.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -51,7 +51,7 @@ spec:
           command: ["sh", "-c", "./start_all.sh"]
           volumeMounts:
             - mountPath: "/algorand/node/data"
-              name: algon-volume
+              name: data-volume
             - mountPath: /algorand/node/data/config.json
               subPath: config.json
               name: config-volume
