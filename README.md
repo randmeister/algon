@@ -2,6 +2,12 @@
  
 Stable channel Algorand node helm chart.
 
+## Features
+
+- Fast Catchup https://developer.algorand.org/docs/run-a-node/setup/install/#sync-node-network-using-fast-catchup
+- Node config.json management
+- ${ALOGRAND_DATA} persistence with k8s persistent volumes https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+
 ## Prerequisites
 
 - Kubernetes cluster accessible https://birthday.play-with-docker.com/kubernetes-docker-desktop/
