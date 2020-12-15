@@ -44,7 +44,7 @@ spec:
             - name: ALGORAND_DATA
               value: /algorand/node/data
             - name: ALGORAND_NETWORK
-              value: testnet
+              value:  {{ .Values.algorand.network }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"

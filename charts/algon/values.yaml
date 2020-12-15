@@ -14,7 +14,7 @@ image:
   pullPolicy: Always
 
 algorand:
-  network: betanet
+  network: testnet
 
 serviceAccount:
   # Specifies whether a service account should be created
