@@ -1,4 +1,11 @@
 # algon helmfile example
+
+## Prerequisites
+
+- Kubernetes cluster accessible https://birthday.play-with-docker.com/kubernetes-docker-desktop/
+- kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/
+- helm https://helm.sh/docs/intro/install/
+- helmfile https://github.com/roboll/helmfile
  
 ## Run algon with Loki and Grafana
 

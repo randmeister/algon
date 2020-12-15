@@ -20,7 +20,7 @@ Algorand node running stable channel helm chart compatible with testnet and main
 
 - Kubernetes cluster accessible https://birthday.play-with-docker.com/kubernetes-docker-desktop/
 - kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/
-- https://helm.sh/docs/intro/install/
+- helm https://helm.sh/docs/intro/install/
 
 ## Run 
 
