@@ -43,8 +43,6 @@ helmDefaults:
 repositories:
   - name: algon
     url: https://randmeister.github.io/algon
-  - name: loki
-    url: https://grafana.github.io/loki/charts
 
 releases:
   - name: algon
@@ -53,24 +51,4 @@ releases:
     values:
       - storage:
           size: 5Gi
-
-  - name: loki
-    namespace: loki
-    chart: loki/loki-stack
-    values:
-      - grafana:
-          enabled: true
-      - prometheus:
-          enabled: true
-          alertmanager:
-          persistentVolume:
-            enabled: false
-          server:
-            persistentVolume:
-              enabled: false
-      - loki:
-          persistence:
-            enabled: true
-            storageClassName: hostpath
-            size: 5Gi
 ```
