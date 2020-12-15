@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  algon:
+  - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2020-12-15T21:41:41.69399063Z"
+    description: A Helm chart for Kubernetes
+    digest: a6023e9841e186b7e2f77bd150f7b1e4118b1926d30b625a385976f5ad1525f4
+    name: algon
+    type: application
+    urls:
+    - https://github.com/randmeister/algon/releases/download/algon-0.3.0/algon-0.3.0.tgz
+    version: 0.3.0
+generated: "2020-12-15T21:41:41.483556383Z"
