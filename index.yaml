@@ -3,12 +3,12 @@ entries:
   algon:
   - apiVersion: v2
     appVersion: 1.17.0
-    created: "2020-12-15T21:49:10.929295802Z"
-    description: A Helm chart for Kubernetes
-    digest: 9f52c6ac3098ff2cf87e34ac5001d6d989b14b95301b1bd647183709fc85e65f
+    created: "2020-12-15T22:23:40.756157766Z"
+    description: Stable channel Algorand node helm chart
+    digest: 9169ea693651d99c9a06959bc5deff7c7235ba9f67ac6fdd209b234131dc71e6
     name: algon
     type: application
     urls:
-    - https://github.com/randmeister/algon/releases/download/algon-0.4.0/algon-0.4.0.tgz
-    version: 0.4.0
-generated: "2020-12-15T21:49:10.809064464Z"
+    - https://github.com/randmeister/algon/releases/download/algon-0.5.0/algon-0.5.0.tgz
+    version: 0.5.0
+generated: "2020-12-15T22:23:40.61969724Z"
