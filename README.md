@@ -1,16 +1,14 @@
 # Algon
  
-Stable channel Alogrand Node helm chart
+Stable channel Alogrand Node helm chart.
 
-## Install
-
-### Prerequisites
+## Prerequisites
 
 - Kubernetes cluster accessible https://birthday.play-with-docker.com/kubernetes-docker-desktop/
 - kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/
 - https://helm.sh/docs/intro/install/
 
-### Steps
+## Run 
 
 ```sh
 helm repo add algon https://randmeister.github.io/algon
