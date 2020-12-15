@@ -12,7 +12,7 @@ Algorand node running stable channel helm chart compatible with testnet and main
 ### Roadmap
 
 - Docker image tagging with Algorand node version
-- Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flaging
+- Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flagging
 - Ingress with TLS
 - kmd chart for management of participation keys
 
