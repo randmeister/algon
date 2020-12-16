@@ -17,6 +17,7 @@ Algorand node running stable channel helm chart compatible with testnet and main
 - Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flagging
 - Ingress with TLS
 - kmd chart for management of participation keys
+- Grafana dashboards
 
 ## Prerequisites
 
