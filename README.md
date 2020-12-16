@@ -2,7 +2,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
 
-Algorand node stable channel helm chart compatible with testnet and mainnet. The motivitation to integrate the Algorand node into the k8s stack is to leverage DevOps tooling such as Grafana and Loki.
+Algorand node stable channel helm chart compatible with testnet and mainnet. The motivation for this project is to leverage DevOps tooling such as Grafana and Loki for improving Algorand node operation.
 
 ## Features
 
@@ -58,6 +58,6 @@ releases:
 
 ## Docker Image
 
-Algon docker imager hoster on docker hub
+algon docker imager hosted on docker hub
 
 https://hub.docker.com/repository/docker/randmeister/algon

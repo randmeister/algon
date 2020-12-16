@@ -13,7 +13,7 @@
 helmfile -f helmfile.yml apply
 ```
 
-## Portforward Grafana
+## Port-forward Grafana
 
 ```
 kubectl get secret --namespace loki loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
