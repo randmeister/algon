@@ -2,7 +2,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
 
-Algorand node running stable channel helm chart compatible with testnet and mainnet.
+Algorand node running stable channel helm chart compatible with testnet and mainnet. The motivitation to integrate the Algorand node into the k8s stack is to leverage DevOps tooling such as Grafana and Loki.
 
 ## Features
 
