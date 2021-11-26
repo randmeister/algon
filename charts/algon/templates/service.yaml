@@ -3,17 +3,20 @@ kind: Service
 metadata:
   name: {{ include "algon.fullname" . }}
   labels:
+    app: algon
     {{- include "algon.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: LoadBalancer
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
       name: http
-    - name: metrics
-      protocol: TCP
-      port: 81
-      targetPort: 9100
+      nodePort: 30002 
+    # - name: metrics
+    #   protocol: TCP
+    #   port: 81
+    #   targetPort: 9100
   selector:
+    app: algon
     {{- include "algon.selectorLabels" . | nindent 4 }}

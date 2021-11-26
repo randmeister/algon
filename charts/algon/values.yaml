@@ -10,7 +10,7 @@ fullnameOverride: ""
 
 image:
   repository: randmeister/algon
-  tag: stable
+  tag: local
   pullPolicy: Always
 
 algorand:
@@ -39,8 +39,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8080
 
 ingress:
   enabled: false
@@ -81,4 +81,4 @@ tolerations: []
 affinity: {}
 
 storage:
-  size: 100Gi
+  size: 5Gi
