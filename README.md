@@ -13,10 +13,9 @@ Algorand node stable channel helm chart compatible with testnet and mainnet.
 ### Roadmap
 
 - Ingress with TLS
-- Docker image is updated nightly and algod inside container is immutable
 - Load-balancing several nodes
 - Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flagging
-- kmd chart for management of participation keys
+- Docker image is updated nightly and algod inside container is immutable
 
 ## Prerequisites
 
