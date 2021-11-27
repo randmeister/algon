@@ -14,13 +14,14 @@ Algorand node stable channel helm chart compatible with testnet and mainnet.
 
 - Ingress with TLS
 - Docker image is updated nightly and algod inside container is immutable
-- Docker image tagging with Algorand node version
+- Load-balancing several nodes
 - Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flagging
 - kmd chart for management of participation keys
 
 ## Prerequisites
 
 - Minikube https://minikube.sigs.k8s.io/docs/handbook/
+- Minikube ingress https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
 - kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/
 - helm https://helm.sh/docs/intro/install/
 - jq https://stedolan.github.io/jq/download/
@@ -32,11 +33,6 @@ helm repo add algon https://randmeister.github.io/algon
 helm repo update
 helm upgrade --install algon algon/algon
 ```
-
-## Docker Image
-
-The algon docker image is hosted on docker hub: https://hub.docker.com/repository/docker/randmeister/algon
-
 
 ## Usage
 
@@ -71,3 +67,7 @@ curl http://192.168.64.12:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN
 ```
 
 1. The Algorand node is now accessible under **algon.local**.
+
+## Docker Image
+
+The algon docker image is hosted on docker hub: https://hub.docker.com/repository/docker/randmeister/algon

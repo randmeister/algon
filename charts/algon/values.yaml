@@ -11,7 +11,7 @@ fullnameOverride: ""
 image:
   repository: randmeister/algon
   tag: latest
-  pullPolicy: Never
+  pullPolicy: Always
 
 algorand:
   network: testnet
