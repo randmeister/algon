@@ -1,18 +1,27 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "algon.fullname" . }}
   labels:
+    app: algon
     {{- include "algon.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
-  strategy:
-    type: Recreate
+{{- end }}  
+  volumeClaimTemplates:
+    - metadata:
+        name: data-volume
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{ .Values.storage.size }}
   selector:
     matchLabels:
+      app: algon
       {{- include "algon.selectorLabels" . | nindent 6 }}
+  serviceName: algon
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -20,6 +29,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
+        app: algon
         {{- include "algon.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
@@ -27,9 +37,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: data-volume
-          persistentVolumeClaim:
-            claimName: algon-data-pv-claim
         - name: config-volume
           configMap:
             name: algon-configmap
@@ -39,29 +46,19 @@ spec:
       hostNetwork: true
       containers:
         - name: {{ .Chart.Name }}
-          env:
-            - name: ALGORAND_DATA
-              value: /algorand/node/data
-            - name: ALGORAND_NETWORK
-              value:  {{ .Values.algorand.network }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["sh", "-c", "./start_all.sh"]
-          volumeMounts:
-            - mountPath: "/algorand/node/data"
-              name: data-volume
-            - mountPath: /algorand/node/data/config.json
-              subPath: config.json
-              name: config-volume
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
           readinessProbe:
-            tcpSocket:
-              port: 8080
+            httpGet:
+              path: /health
+              port: http
             initialDelaySeconds: 10
             periodSeconds: 10
           livenessProbe:
@@ -72,6 +69,17 @@ spec:
             periodSeconds: 60
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: ALGORAND_DATA
+              value: /algorand/node/data
+            - name: ALGORAND_NETWORK
+              value:  {{ .Values.algorand.network }}
+          volumeMounts:
+            - mountPath: "/algorand/node/data"
+              name: data-volume
+            - mountPath: /algorand/node/data/config.json
+              subPath: config.json
+              name: config-volume
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

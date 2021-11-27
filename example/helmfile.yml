@@ -36,4 +36,3 @@ releases:
             enabled: true
             storageClassName: hostpath
             size: 5Gi
- 

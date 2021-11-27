@@ -27,3 +27,22 @@ Open Grafana http://localhost:3000 and use Loki's log view to run LogQL queries 
 ```
 helmfile -f helmfile.yml delete
 ```
+
+```yaml
+helmDefaults:
+  verify: false
+  wait: true
+  historyMax: 3
+  createNamespace: true
+repositories:
+  - name: algon
+    url: https://randmeister.github.io/algon
+
+releases:
+  - name: algon
+    namespace: algon
+    chart: algon/algon
+    values:
+      - storage:
+          size: 5Gi
+```
