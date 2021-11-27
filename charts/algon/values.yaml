@@ -10,7 +10,7 @@ fullnameOverride: ""
 
 image:
   repository: randmeister/algon
-  tag: latest
+  tag: stable
   pullPolicy: Always
 
 algorand:
