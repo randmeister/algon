@@ -13,13 +13,14 @@ describe('Connection to internal service', () => {
 
   before(async () => {
     await cmd('kubectl create namespace algon || true')
-    // await cmd('helm upgrade --install algon charts/algon --namespace algon')
-    // portForwardChildProcess = await cmd('kubectl port-forward service/algon 8080:8080', true)
+    await cmd('helm upgrade --install algon charts/algon --namespace algon')
+    portForwardChildProcess = await cmd('kubectl port-forward service/algon 8080:8080', true)
+    await sleep(20000000)
   }) 
 
   after(async () => {
-    // await cmd(`kill -9 ${childProcess.pid}`)
-    // /await cmd('helm delete algon --namespace algon')
+    await cmd(`kill -9 ${childProcess.pid}`)
+    await cmd('helm delete algon --namespace algon')
   })
 
   describe('with access token', () => {
@@ -28,9 +29,9 @@ describe('Connection to internal service', () => {
       const server = 'http://localhost'
       const port = 8080
       const client = new algosdk.Algodv2(token, server, port)
-      debug(1)
-      const res = await client.status().do()
-      debug(res.data)
+      
+      const res = await client.healthCheck().do()
+
       
 
     });
@@ -50,4 +51,8 @@ async function cmd(cmdString, daemon=false) {
   debug(`${cmdString} : stderr`, childProcess.stderr)
   debug(`${cmdString} : stdout`, childProcess.stdout)
   return childProcess
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

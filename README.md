@@ -2,7 +2,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
 
-Algorand node stable channel helm chart compatible with testnet and mainnet. The motivation for this project is to leverage DevOps tooling such as Grafana and Loki for improving Algorand node operation.
+Algorand node stable channel helm chart compatible with testnet and mainnet.
 
 ## Features
 
@@ -12,7 +12,6 @@ Algorand node stable channel helm chart compatible with testnet and mainnet. The
 
 ### Roadmap
 
-- Grafana dashboards
 - Ingress with TLS
 - Docker image is updated nightly and algod inside container is immutable
 - Docker image tagging with Algorand node version
@@ -21,11 +20,12 @@ Algorand node stable channel helm chart compatible with testnet and mainnet. The
 
 ## Prerequisites
 
-- Kubernetes cluster accessible https://birthday.play-with-docker.com/kubernetes-docker-desktop/
+- Minikube https://minikube.sigs.k8s.io/docs/handbook/
 - kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl/
 - helm https://helm.sh/docs/intro/install/
+- jq https://stedolan.github.io/jq/download/
 
-## Run 
+## Install
 
 ```sh
 helm repo add algon https://randmeister.github.io/algon
@@ -33,31 +33,41 @@ helm repo update
 helm upgrade --install algon algon/algon
 ```
 
-### Helmfile
-
-Helmfile is a tool to manage helm charts declaratively https://github.com/roboll/helmfile. Check out [example directory](./example) for full documentation.
-
-```yaml
-helmDefaults:
-  verify: false
-  wait: true
-  historyMax: 3
-  createNamespace: true
-repositories:
-  - name: algon
-    url: https://randmeister.github.io/algon
-
-releases:
-  - name: algon
-    namespace: algon
-    chart: algon/algon
-    values:
-      - storage:
-          size: 5Gi
-```
-
 ## Docker Image
 
-algon docker imager hosted on docker hub
+The algon docker image is hosted on docker hub: https://hub.docker.com/repository/docker/randmeister/algon
 
-https://hub.docker.com/repository/docker/randmeister/algon
+
+## Usage
+
+### Access node via ingress
+
+Copy URL from minikube
+```
+minikube service list algon -n algon
+```
+|-----------|-------|-------------|----------------------------|
+| NAMESPACE | NAME  | TARGET PORT |            URL             |
+|-----------|-------|-------------|----------------------------|
+| algon     | algon | http/8080   | http://192.168.64.12:31902 |
+|-----------|-------|-------------|----------------------------|
+
+Make request to node from localhost
+```
+export ALGON_API_TOKEN=`kubectl get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
+curl http://192.168.64.12:31902/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+```
+
+### Access node via minikube tunnel
+
+1. Run `minikube tunnel`
+
+1. In a new terminal run:
+
+```
+echo "`kubectl -n algon  get svc algon -o json | jq -r '.status.loadBalancer | .ingress[].ip'` algon.local" | sudo tee /etc/hosts
+export ALGON_API_TOKEN=`kubectl get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
+curl http://192.168.64.12:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+```
+
+1. The Algorand node is now accessible under **algon.local**.

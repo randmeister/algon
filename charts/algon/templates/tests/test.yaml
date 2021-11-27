@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "algon.fullname" . }}-test"
+  labels:
+    {{- include "algon.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: test-status
+      image: curlimages/curl:latest
+      command: ['curl']
+      args: ['--fail', 'http://algon.algon.svc.clustelocal:8080/metrics']
+  restartPolicy: Never
