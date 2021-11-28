@@ -2,18 +2,18 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/randmeister/algon/release)
 
-Algorand node stable channel helm chart compatible with testnet and mainnet.
+Production Algorand node stable channel helm chart compatible with testnet and mainnet.
 
 ## Features
 
 - Fast catchup https://developer.algorand.org/docs/run-a-node/setup/install/#sync-node-network-using-fast-catchup
 - Node config.json management
-- ${ALGORAND_DATA} persistence with k8s persistent volumes https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+- Data persistence with persistent volumes https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+- Load-balancing
 
 ### Roadmap
 
 - Ingress with TLS
-- Load-balancing several nodes
 - Separate processes into containers with shared data volume (algod, node.log tailer, carpenter, goal node status, catchup) to allow feature-flagging
 - Docker image is updated nightly and algod inside container is immutable
 
@@ -30,27 +30,28 @@ Algorand node stable channel helm chart compatible with testnet and mainnet.
 ```sh
 helm repo add algon https://randmeister.github.io/algon
 helm repo update
-helm upgrade --install algon algon/algon
+kubectl create namespace algon
+helm upgrade --install algon algon/algon --namespace algon
 ```
 
 ## Usage
 
 ### Access node via ingress
 
-Copy URL from minikube
+1. Copy URL from minikube
 ```
 minikube service list algon -n algon
 ```
-|-----------|-------|-------------|----------------------------|
-| NAMESPACE | NAME  | TARGET PORT |            URL             |
-|-----------|-------|-------------|----------------------------|
-| algon     | algon | http/8080   | http://192.168.64.12:31902 |
-|-----------|-------|-------------|----------------------------|
 
-Make request to node from localhost
+Example output:
+| NAMESPACE | NAME  | TARGET PORT |            URL             |
+| algon     | algon | http/8080   | http://192.168.64.12:31902 |
+
+
+1. Make request to node from localhost
 ```
 export ALGON_API_TOKEN=`kubectl get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
-curl http://192.168.64.12:31902/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+curl http://${URL_FROM_MINIKUBE_SERVICE_LIST_COMMAND}/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
 ```
 
 ### Access node via minikube tunnel
@@ -58,9 +59,13 @@ curl http://192.168.64.12:31902/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKE
 1. Run `minikube tunnel`
 
 1. In a new terminal run:
-
+Note: This is a one off step
 ```
 echo "`kubectl -n algon  get svc algon -o json | jq -r '.status.loadBalancer | .ingress[].ip'` algon.local" | sudo tee -a /etc/hosts
+```
+
+1. Make request to node from localhost
+```
 export ALGON_API_TOKEN=`kubectl get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
 curl http://algon.local:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
 ```
