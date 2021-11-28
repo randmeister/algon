@@ -1,6 +1,4 @@
 # Default values for algon.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 replicaCount: 1
 
@@ -17,18 +15,13 @@ algorand:
   network: testnet
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext:
   privileged: false
@@ -56,9 +49,6 @@ ingress:
       paths:
         - "/"
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources:
   limits:
