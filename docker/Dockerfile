@@ -1,6 +1,8 @@
-FROM ubuntu:16.04
+FROM ubuntu:21.10
 
 EXPOSE 8080 9100
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # kubectl
 RUN apt-get update && \
@@ -25,3 +27,5 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y jq
 
 ADD ./scripts ./
+
+USER 10001:10001

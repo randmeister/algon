@@ -44,6 +44,17 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       hostNetwork: true
+      initContainers:
+        - name: allow-data-writes
+          image: alpine
+          command:
+          - chown
+          - -R
+          - 10001:10001
+          - /algorand/node/data
+          volumeMounts:
+          - name: data-volume
+            mountPath: /algorand/node/data
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
