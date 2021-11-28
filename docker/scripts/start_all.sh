@@ -13,7 +13,7 @@ if [ "$token" = "null" ]; then
     kubectl create secret generic algon-api-token \
                 --from-file=node/data/algod.token \
                 --from-file=node/data/algod.admin.token \
-                --save-config=client \
+                --save-config \
                 --dry-run \
                 -o yaml |
                 kubectl apply -f -
