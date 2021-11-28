@@ -3,3 +3,11 @@ docker_build_test:
 
 docker_build:
 	docker build -t randmeister/algon:local docker
+
+helm_upgrade_local:
+	helm upgrade \
+		--install \
+		--namespace algon \
+		--set image.tag=local \
+		--set image.pullPolicy=Never \
+		algon charts/algon

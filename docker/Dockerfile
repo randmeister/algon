@@ -28,4 +28,4 @@ RUN apt-get update && \
 
 ADD ./scripts ./
 
-USER 10001:10001
+# USER 10001:10001

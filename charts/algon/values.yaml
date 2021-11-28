@@ -23,17 +23,17 @@ podAnnotations: {}
 
 podSecurityContext: {}
 
-securityContext:
-  privileged: false
-  readOnlyRootFilesystem: true
-  allowPrivilegeEscalation: false
-  runAsUser: 10001
-  runAsGroup: 10001
-  capabilities:
-    drop:
-    - ALL
-  seccompProfile:
-    type: RuntimeDefault
+securityContext: {}
+  # privileged: false
+  # readOnlyRootFilesystem: true
+  # allowPrivilegeEscalation: false
+  # runAsUser: 10001
+  # runAsGroup: 10001
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # seccompProfile:
+  #   type: RuntimeDefault
 
 service:
   type: LoadBalancer
