@@ -20,4 +20,8 @@ RUN apt-get update && \
     mkdir node && \
     ./update.sh -i -c stable -p node -d node/_data -n && rm -rf node/_data
 
+# jq
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y jq
+
 ADD ./scripts ./

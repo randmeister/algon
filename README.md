@@ -60,9 +60,9 @@ curl http://192.168.64.12:31902/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKE
 1. In a new terminal run:
 
 ```
-echo "`kubectl -n algon  get svc algon -o json | jq -r '.status.loadBalancer | .ingress[].ip'` algon.local" | sudo tee /etc/hosts
+echo "`kubectl -n algon  get svc algon -o json | jq -r '.status.loadBalancer | .ingress[].ip'` algon.local" | sudo tee -a /etc/hosts
 export ALGON_API_TOKEN=`kubectl get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
-curl http://192.168.64.12:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+curl http://algon.local:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
 ```
 
 1. The Algorand node is now accessible under **algon.local**.
