@@ -60,7 +60,7 @@ x§curl http://${URL_FROM_MINIKUBE_SERVICE_LIST_COMMAND}/v2/status -H  "X-Algo-A
 export ALGON_IP=`kubectl -n algon get svc algon -o json | jq -r '.status.loadBalancer | .ingress[].ip'`
 export ALGON_API_TOKEN=`kubectl -n algon get secrets/algon-api-token --template="{{index .data \"algod.token\" | base64decode}}"`
 echo "\n\nAlgorand Node IP: $ALGON_IP\nAlgorand Node Port: 8080 \nAlgorand API Token: $ALGON_API_TOKEN\n"
-curl http://algon.local:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+curl http://$ALGON_IP:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
 ```
 
 1. The Algorand node is now accessible under **algon.local**.
