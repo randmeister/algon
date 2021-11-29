@@ -3,12 +3,12 @@ entries:
   algon:
   - apiVersion: v2
     appVersion: 1.17.0
-    created: "2021-11-28T14:57:32.927808779Z"
+    created: "2021-11-29T07:29:25.38999799Z"
     description: Stable channel Algorand node helm chart
-    digest: b65573c2fb119695908c7fa4aff7c0821b43e01d57fdb9d5380b1ba6478530b6
+    digest: 80e95cdf2938c45864e865c8e52433b0a2f14c4e842941ecd56edac324523638
     name: algon
     type: application
     urls:
-    - https://github.com/randmeister/algon/releases/download/algon-1.0.2/algon-1.0.2.tgz
-    version: 1.0.2
-generated: "2021-11-28T14:57:32.927819879Z"
+    - https://github.com/randmeister/algon/releases/download/algon-1.0.3/algon-1.0.3.tgz
+    version: 1.0.3
+generated: "2021-11-29T07:29:25.390004291Z"
