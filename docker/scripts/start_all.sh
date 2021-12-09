@@ -25,14 +25,8 @@ fi
 export token=
 
 # Fast catchup
-/algorand/node/goal node status
 /algorand/node/goal node catchup `curl https://algorand-catchpoints.s3.us-east-2.amazonaws.com/channel/${ALGORAND_NETWORK}/latest.catchpoint`
 
-# Write node status to stdout
-while true; do
-    /algorand/node/goal node status
-    sleep 1
-done &
 
 # Write node.log to stdout
 tail -f ${ALGORAND_DATA}/node.log
