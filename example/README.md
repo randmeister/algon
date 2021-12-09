@@ -1,4 +1,4 @@
-# algon helmfile example
+# Algon Grafana and Loki Example
 
 ## Prerequisites
 
