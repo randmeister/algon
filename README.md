@@ -48,7 +48,7 @@ Example output:
 
 1. Make request to node from localhost
 ```
-x§curl http://${URL_FROM_MINIKUBE_SERVICE_LIST_COMMAND}/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
+curl http://${URL_FROM_MINIKUBE_SERVICE_LIST_COMMAND}/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v | jq .
 ```
 
 ### Access node via minikube tunnel
