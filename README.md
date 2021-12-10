@@ -9,7 +9,7 @@ Algorand node stable channel helm chart compatible with testnet and mainnet.
 - Fast catchup https://developer.algorand.org/docs/run-a-node/setup/install/#sync-node-network-using-fast-catchup
 - Node config.json management
 - Data persistence with persistent volumes https://kubernetes.io/docs/concepts/storage/persistent-volumes/
-- Load-balancing [example](examples/load-balancer/README.md)
+- Load-balancing [example](example/load-balancer/README.md)
 
 ## Prerequisites
 
