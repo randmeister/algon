@@ -23,10 +23,6 @@ RUN curl -L https://raw.githubusercontent.com/algorand/go-algorand/rel/stable/cm
     ./update.sh -i -c stable -p node -d node/_data -n && \
     rm -rf node/_data
 
-# jq
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y jq
-
 ADD ./scripts ./
 
 # USER 10001:10001
