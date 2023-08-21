@@ -22,7 +22,7 @@ Algorand node stable channel helm chart compatible with testnet and mainnet.
 ## Install
 
 ```sh
-helm repo add algon https://randmeister.github.io/algon
+helm repo add algon https://activadigital-it.github.io/algon
 helm repo update
 kubectl create namespace algon
 helm upgrade --install algon algon/algon --namespace algon
@@ -67,4 +67,8 @@ curl http://$ALGON_IP:8080/v2/status -H  "X-Algo-API-Token: $ALGON_API_TOKEN" -v
 
 ## Docker Image
 
-The algon docker image is hosted on docker hub: https://hub.docker.com/repository/docker/randmeister/algon
+The algon docker image is hosted on docker hub: https://hub.docker.com/r/activadigital/algon
+
+```
+docker pull activadigital/algon
+```
